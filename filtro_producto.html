@@ -9,7 +9,16 @@
     <div id="filtro">
         <label for="nombre">Filtrar por nombre:</label>
         <input type="text" id="nombre">
-        <button onclick="filtrarPorNombre()">Filtrar</button>
+        
+        <label for="categoria">Filtrar por categoría:</label>
+        <select id="categoria">
+            <option value="">Todas</option>
+            <option value="Fruta">Fruta</option>
+            <option value="Verdura">Verdura</option>
+            <!-- Agrega más opciones de categorías según tu necesidad -->
+        </select>
+        
+        <button onclick="filtrarProductos()">Filtrar</button>
     </div>
 
     <div id="DatosProductos">
@@ -22,11 +31,11 @@
             { id: 3, nombre: 'Platano', categoria: 'Fruta'},
             { id: 4, nombre: 'Naranja ', categoria: 'Fruta'},
             { id: 5, nombre: 'Mandarina ', categoria: 'Fruta'},
-            { id: 6, nombre: 'Tomate',  categoria: 'Fruta'  },
-            { id: 7, nombre: 'Lechuga',  categoria: 'Fruta' },
-            { id: 8, nombre: 'Cebolla', categoria: 'Fruta'},
-            { id: 9, nombre: 'Papa', categoria: 'Fruta'},
-            { id: 10, nombre: 'Zanahoria ', categoria: 'Fruta'}
+            { id: 6, nombre: 'Tomate',  categoria: 'Verdura'  },
+            { id: 7, nombre: 'Lechuga',  categoria: 'Verdura' },
+            { id: 8, nombre: 'Cebolla', categoria: 'Verdura'},
+            { id: 9, nombre: 'Papa', categoria: 'Verdura'},
+            { id: 10, nombre: 'Zanahoria ', categoria: 'Verdura'}
         ];
 
         // Función para mostrar los productos
@@ -37,18 +46,32 @@
             const datosHTML = `
                 <h2>Productos</h2>
                 <ul class="lista">
-                    ${Productos.map(item => `<li>${item.nombre} ${item.categoria}</li>`).join('')}
+                    ${Productos.map(item => `<li>${item.nombre} - ${item.categoria}</li>`).join('')}
                 </ul>
             `;
             contenedorProductos.innerHTML = datosHTML;
         }
 
-        // Función para filtrar productos por nombre
-        function filtrarPorNombre() {
+        // Función para filtrar productos
+        function filtrarProductos() {
             const Nombre = document.getElementById('nombre').value;
-            const NombresFiltrados = DatosProductos.filter(item => item.nombre == Nombre);
-            MostrarProductos(NombresFiltrados);
+            const Categoria = document.getElementById('categoria').value;
+            
+            let productosFiltrados = DatosProductos;
+            
+            if (Nombre) {
+                productosFiltrados = productosFiltrados.filter(item => item.nombre.toLowerCase().includes(Nombre.toLowerCase()));
+            }
+            
+            if (Categoria) {
+                productosFiltrados = productosFiltrados.filter(item => item.categoria === Categoria);
+            }
+
+            MostrarProductos(productosFiltrados);
         }
+        
+        // Muestra todos los productos al cargar la página
+        MostrarProductos(DatosProductos);
     </script>
 
 </body>
