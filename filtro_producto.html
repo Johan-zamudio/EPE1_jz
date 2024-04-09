@@ -12,51 +12,43 @@
         <button onclick="filtrarPorNombre()">Filtrar</button>
     </div>
 
-    <div id="datos">
+    <div id="DatosProductos">
     </div>
 
     <script>
+        const DatosProductos = [
+            { id: 1, nombre: 'Manzana',  categoria: 'Fruta'  },
+            { id: 2, nombre: 'Pera',  categoria: 'Fruta' },
+            { id: 3, nombre: 'Platano', categoria: 'Fruta'},
+            { id: 4, nombre: 'Naranja ', categoria: 'Fruta'},
+            { id: 5, nombre: 'Mandarina ', categoria: 'Fruta'},
+            { id: 6, nombre: 'Tomate',  categoria: 'Fruta'  },
+            { id: 7, nombre: 'Lechuga',  categoria: 'Fruta' },
+            { id: 8, nombre: 'Cebolla', categoria: 'Fruta'},
+            { id: 9, nombre: 'Papa', categoria: 'Fruta'},
+            { id: 10, nombre: 'Zanahoria ', categoria: 'Fruta'}
+        ];
 
-const DatosProductos = [
-    { id: 1, nombre: 'Manzana',  categoria: 'Fruta'  },
-    { id: 2, nombre: 'Pera',  categoria: 'Fruta' },
-    { id: 3, nombre: 'Platano', categoria: 'Fruta'},
-    { id: 4, nombre: 'Naranja ', categoria: 'Fruta'},
-    { id: 5, nombre: 'Mandarina ', categoria: 'Fruta'},
-    { id: 6, nombre: 'Tomate',  categoria: 'Fruta'  },
-    { id: 7, nombre: 'Lechuga',  categoria: 'Fruta' },
-    { id: 8, nombre: 'Cebolla', categoria: 'Fruta'},
-    { id: 9, nombre: 'Papa', categoria: 'Fruta'},
-    { id: 10, nombre: 'Zanahoria ', categoria: 'Fruta'},
-
-    
-    ];
-
-
-    // Función para mostrar los productos
- function MostrarProductos(Productos) {
-            const contenedorProductos = document.getElementById('datos');
+        // Función para mostrar los productos
+        function MostrarProductos(Productos) {
+            const contenedorProductos = document.getElementById('DatosProductos');
             contenedorProductos.innerHTML = '';
 
             const datosHTML = `
                 <h2>Productos</h2>
                 <ul class="lista">
-                    ${productos.map(item => `<li>${item.nombre} ${item.categoria} </li>`).join('')}
+                    ${Productos.map(item => `<li>${item.nombre} ${item.categoria}</li>`).join('')}
                 </ul>
             `;
             contenedorProductos.innerHTML = datosHTML;
         }
-         // Función para filtrar productos por precio máximo
-         function filtrarPorNombre() {
+
+        // Función para filtrar productos por nombre
+        function filtrarPorNombre() {
             const Nombre = document.getElementById('nombre').value;
-            const NombresFiltrados = datos.filter(item => item.nombre == Nombre);
-            mostrarProductos(NombresFiltrados);
+            const NombresFiltrados = DatosProductos.filter(item => item.nombre == Nombre);
+            MostrarProductos(NombresFiltrados);
         }
-
-        // Llamar a la función principal para mostrar datos al cargar la página
-        mostrarProductos(datos);
-
-
     </script>
 
 </body>
