@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de contacto</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+      
+        
+
+        input[type="text"],
+        input[type="email"],
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="button"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="button"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <form id="FormularioDeContacto">
+        <label for="nombre">Nombre: </label>
+        <input type="text" name="nombre" id="nombre">
+        
+        <label for="direccion">Dirección: </label>
+        <input type="text" name="direccion" id="direccion">
+
+        <label for="correo">Correo electrónico:</label>
+        <input type="email" name="correo" id="correo">
+
+        <label for="comuna">Comuna:</label><br>
+        <select id="comuna" name="comuna">
+            <option value="Santiago">Santiago</option>
+            <option value="Providencia">Providencia</option>
+            <option value="Las Condes">Las Condes</option>
+            <option value="Ñuñoa">Ñuñoa</option>
+            <option value="Recoleta">Recoleta</option>
+            <option value="Vitacura">Vitacura</option>
+            <option value="La Reina">La Reina</option>
+            <option value="Macul">Macul</option>
+            <option value="San Joaquín">San Joaquín</option>
+            <option value="Peñalolén">Peñalolén</option>
+        </select><br>
+        
+        <input type="button" value="Enviar" onclick="EnvioFormulario()">
+    </form>
+
+    <script>
+        function EnvioFormulario() {
+            var nombre = document.getElementById("nombre").value;
+            var correo = document.getElementById("correo").value;
+            var direccion = document.getElementById("direccion").value;
+            var comuna = document.getElementById("comuna").value;
+    
+            alert("Los datos ingresados son:\nNombre: " + nombre + "\nCorreo electrónico: " + correo + "\nDirección: " + direccion + "\nComuna: " + comuna);
+        }
+    </script>
+</body>
+</html>
